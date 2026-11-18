@@ -1,0 +1,36 @@
+
+---
+title: "Penguin Data Analysis"
+format: html
+---
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Penguin Dataset Overview
+
+This dataset contains information about penguins from three different species.
+
+```{r}
+penguins %>%
+  group_by(species) %>%
+  summarize(
+    avg_bill_length = mean(bill_length_mm, na.rm = TRUE),
+    count = n()
+  )
+```
+
+## Penguin Bill Length Plot
+
+```{r}
+ggplot(penguins, aes(x = species, y = bill_length_mm, fill = species)) +
+  geom_boxplot() +
+  labs(
+    title = "Penguin Bill Length by Species",
+    x = "Species",
+    y = "Bill Length (mm)"
+  )
+```
+
